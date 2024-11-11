@@ -51,3 +51,18 @@ git push
 git status
 # THEN FROM GITHUB CREATE A PULL REQUEST TO MAIN
 ```
+
+#### Create environment
+
+``` bash
+# CREATE ENV
+python3.12 -m venv <name-of-env>
+# TO ACTIVATE ENV ON WINDOWS
+.\<name-of-env>\Scripts\activate
+# TO ACTIVATE ENV ON MAC
+source <name-of-env>/source/activate
+# INSTALL LIBRARIES
+pip install -r requirements.txt
+# SELEC
+
+```
