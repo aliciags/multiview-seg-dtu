@@ -4,3 +4,5 @@ myenv/
 .env
 dl/
 DLproject/
+venv/
+
