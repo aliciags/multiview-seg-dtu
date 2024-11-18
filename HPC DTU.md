@@ -11,6 +11,10 @@
 
 ### Ejecutar Jupyter Notebooks
 
-- En terminal 1: `jupyter notebook --no-browser --port=8888`
-- En terminal 2: `ssh -N -L 8889:localhost:8889 s243345@login.hpc.dtu.dk`
-- **Importante:** Siempre cerrar las libretas usando Ctrl + C en la Terminal 1. Ejecutar `jupyter server list` para comprobar que hemos cerrado la libreta correctamente
+- En terminal 1:
+  - Option 1: `jp` (`jupyter notebook --no-browser --port=8888`) o `alias jp='jupyter notebook --no-browser --port=8888'`
+  - Option 2: `jupyter notebook --no-browser --port=7777 --ip=$HOSTNAME`
+- En terminal 2:
+  - Option 1: `ssh -N -L 8889:localhost:8889 s243345@login.hpc.dtu.dk`
+  - Option 2: `ssh s243345@login1.hpc.dtu.dk -g -L7777:n-62-12-19:7777 -N`
+- **Importante:** Siempre cerrar las libretas usando Ctrl + C en la Terminal 1. Ejecutar `jupyter server list` para comprobar que hemos cerrado la libreta correctamente.
