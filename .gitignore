@@ -1,4 +1,5 @@
 # virtual env
 .venv/
-myvenv/
+myenv/
 .env
+dl/

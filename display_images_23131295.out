@@ -1,0 +1,47 @@
+Image grid saved to output_image_grid_s008.png
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23131295: <display_images> in cluster <dcc> Done
+
+Job <display_images> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Mon Nov 11 16:14:49 2024
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <s243345> in cluster <dcc> at Mon Nov 11 16:14:50 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Mon Nov 11 16:14:50 2024
+Terminated at Mon Nov 11 16:14:57 2024
+Results reported at Mon Nov 11 16:14:57 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J display_images          # Job name
+#BSUB -n 1                       # Number of cores
+
+# Remove old output files if they exist
+# rm -f display_images.out display_images.err
+
+# Run the Python script
+python3 display.py --sample-number 8
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   6.23 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   7 sec.
+    Turnaround time :                            8 sec.
+
+The output (if any) is above this job summary.
+
