@@ -267,7 +267,7 @@ def display_image_stack_with_mask(images, mask):
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout to fit title
     plt.show()
 
-def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform):   
+def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False):   
     # plot_transformed_images(image_path_list, transform=data_transform, n=3)
     
     # Initialize dataset and dataloader
@@ -293,10 +293,13 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform):
     print("Image stack shape:", test_images.shape)  # Should be (11, H, W)
     print("Mask shape:", test_mask.shape)           # Should be (1, H, W)
     # images
-        
-    # Display a random sample from the dataset
-    display_image_stack_with_mask(train_images, train_mask)
-    display_image_stack_with_mask(test_images, test_mask)
+
     '''
+    if display_sample:
+        # Display a random sample from the dataset
+        print("First image from trainset:")
+        display_image_stack_with_mask(train_dataset[0][0], train_dataset[0][1])
+        print("First image from testset:")
+        display_image_stack_with_mask(test_dataset[0][0], test_dataset[0][1])
     
     return train_dataloader, test_dataloader
