@@ -3,3 +3,7 @@
 myenv/
 .env
 dl/
+*.out
+*.err
+*.png
+*.txt
