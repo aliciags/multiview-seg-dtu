@@ -3,6 +3,7 @@
 myenv/
 .env
 dl/
+DLproject/
 *.out
 *.err
 *.png
