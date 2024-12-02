@@ -12,4 +12,4 @@
 source /zhome/44/2/213836/myenv/bin/activate
 
 # Run the Python script
-python3 train.py
+CUDA_LAUNCH_BLOCKING=1 python3 train.py

@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 import random
 from pathlib import Path
 from dataloader import get_dataloader, walk_through_dir
-from models import SimpleSegmentationModel, SegmentationModel
+from models import SimpleSegmentationModel, SegmentationModel, pretrained_UNet
 
 def set_seed(seed=111):
     torch.manual_seed(seed)
@@ -54,7 +54,8 @@ def train_model(model, train_loader, criterion, optimizer, num_epochs):
 
 if __name__ == "__main__":
     set_seed()
-    
+
+    data_path = "/zhome/70/5/14854/nobackup/deeplearningf24/forcebiology/data/" 
     image_dirs = [data_path + 'brightfield/Alexa488_Fibroblasts_well1_50locations',
                   data_path + 'brightfield/Alexa488_Fibroblasts_well2_200locations',
                   data_path + 'brightfield/Alexa488_Fibroblasts_well3_200locations',
@@ -76,22 +77,23 @@ if __name__ == "__main__":
     print(f"Using device: {device}")
     
     # Initialize model, loss function, and optimizer
-    model_name = "Estel"
+    model_name = "Pretrained"
     if model_name == "Simple":
         model = SimpleSegmentationModel().to(device)
-    elif model_name == "Estel":
+    elif model_name == "UNet":
         model = SegmentationModel().to(device)
-    # elif model_name == "UNet":
-    #     model = UNet().to(device)
+    elif model_name == "Pretrained":
+        model = pretrained_UNet().to(device)
         
     criterion = nn.BCELoss()  # Binary Cross-Entropy Loss for binary segmentation
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
     # Train the model with the training dataloader
-    train_model(model, train_dataloader, criterion, optimizer, num_epochs=30)
+    train_model(model, train_dataloader, criterion, optimizer, num_epochs=25)
 
     # Save the model
     current_directory = os.getcwd()
-    model_save_path = os.path.join(current_directory, "segmentation_model.pth")
+    model_name_saved = "segmentation_model_" + model_name + ".pth"
+    model_save_path = os.path.join(current_directory, model_name_saved)
     torch.save(model.state_dict(), model_save_path)
     print(f"Model saved successfully to {model_save_path}")
