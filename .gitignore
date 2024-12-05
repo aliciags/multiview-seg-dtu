@@ -8,3 +8,5 @@ DLproject/
 *.err
 *.png
 *.txt
+venv/
+
