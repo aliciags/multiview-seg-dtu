@@ -4,11 +4,11 @@ import torch.nn.functional as F
 import segmentation_models_pytorch as smp
 
 class SimpleSegmentationModel(nn.Module):
-    def __init__(self):
+    def __init__(self, in_channels=11):
         super(SimpleSegmentationModel, self).__init__()
         
         # Downsampling (Encoder)
-        self.conv1 = nn.Conv2d(11, 32, kernel_size=3, padding=1)  # Input channels: 11
+        self.conv1 = nn.Conv2d(in_channels, 32, kernel_size=3, padding=1)  # Input channels: 11
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         
         # Upsampling (Decoder)
@@ -31,11 +31,11 @@ class SimpleSegmentationModel(nn.Module):
 
 # improvements: batch normalization, dropout for regularization, and skip connections for better spatial feature retention
 class SegmentationModel(nn.Module):
-    def __init__(self):  # Correctly use __init__ here
+    def __init__(self, channels=11):  # Correctly use __init__ here
         super(SegmentationModel, self).__init__()  # Correctly use __init__ here
         
         # Encoder: Downsampling Path
-        self.enc1 = self._conv_block(11, 64)    # Input channels: 11 (BF images)
+        self.enc1 = self._conv_block(channels, 64)    # Input channels: 11 (BF images)
         self.enc2 = self._conv_block(64, 128)
         self.enc3 = self._conv_block(128, 256)
         
@@ -101,7 +101,7 @@ class SegmentationModel(nn.Module):
         return x
 
 
-def pretrained_UNet():
+def pretrained_UNet(channels=11):
     # Load pretrained U-Net with a ResNet backbone
     pretrained_unet = smp.Unet(
         encoder_name="resnet34",        # Choose a ResNet backbone (others available)
@@ -112,7 +112,7 @@ def pretrained_UNet():
     
     # Modify the first convolutional layer to accept 11 input channels
     pretrained_unet.encoder.conv1 = nn.Conv2d(
-        in_channels=11,               # From 3 to 11 channels
+        in_channels=channels,               # From 3 to 11 channels
         out_channels=64,
         kernel_size=7,
         stride=2,

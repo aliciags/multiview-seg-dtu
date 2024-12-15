@@ -187,7 +187,21 @@ if __name__ == "__main__":
         required=True, 
         help="Name of the model to train (Simple/UNet/Pretrained)"
     )
+    parser.add_argument(
+        "--train_percentage", 
+        type=float, 
+        default=1.0,
+        help="Percentage of the trainset to use"
+    )
+    parser.add_argument(
+        "--channels",
+        type=int,
+        nargs='+',           # Allows one or more integers (vector of channels)
+        default=None,
+        help="List of channel indices to use (e.g., 0 3 5). Default is None (use all channels)."
+    )
     args = parser.parse_args()
+    channels_indices = args.channels if args.channels is not None else list(range(11))
     
     set_seed()
 
@@ -207,7 +221,7 @@ if __name__ == "__main__":
     ])
     mask_transform = data_transform
     
-    train_dataloader, val_dataloader, test_dataloader = get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False)
+    train_dataloader, val_dataloader, test_dataloader = get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=args.train_percentage, channel_indices=args.channels)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -218,7 +232,7 @@ if __name__ == "__main__":
         model = SimpleSegmentationModel().to(device)
         criterion = nn.BCELoss()
     elif model_name == "UNet":
-        model = SegmentationModel().to(device)
+        model = SegmentationModel(in_channels=len(channels_indices)).to(device)
         criterion = nn.BCELoss()
     elif model_name == "Pretrained":
         model = pretrained_UNet().to(device)
@@ -233,14 +247,18 @@ if __name__ == "__main__":
         model, train_dataloader, val_dataloader, criterion, optimizer, num_epochs=args.num_epochs,
     )
     
+    # Create a descriptive string for train percentage and channels
+    train_percentage_str = f"{int(args.train_percentage * 100)}%"
+    channels_str = "_".join(map(str, channels_indices))
+
     # Save the model
     current_directory = os.getcwd()
-    model_name_saved = "segmentation_model_" + model_name + ".pth"
+    model_name_saved = f"segmentation_model_{model_name}_train{train_percentage_str}_channels{channels_str}.pth"
     model_save_path = os.path.join(current_directory, model_name_saved)
     torch.save(model.state_dict(), model_save_path)
     print(f"Model saved successfully to {model_save_path}")
 
-    # Pèrdua (Loss)
+    # Loss Plot
     plt.figure(figsize=(10, 5))
     plt.plot(train_losses, label="Train Loss")
     plt.plot(val_losses, label="Validation Loss")
@@ -248,10 +266,11 @@ if __name__ == "__main__":
     plt.ylabel("Loss")
     plt.legend()
     plt.title("Training and Validation Loss")
-    plt.savefig(f"{model_name}_training_validation_loss.png")  # Save with model name
+    loss_plot_name = f"{model_name}_train{train_percentage_str}_channels{channels_str}_loss.png"
+    plt.savefig(loss_plot_name)  # Save with detailed name
     plt.close()  # Close the plot to free memory
 
-    # Dice Score
+    # Dice Score Plot
     plt.figure(figsize=(10, 5))
     plt.plot(train_dice_scores, label="Train Dice Score")
     plt.plot(val_dice_scores, label="Validation Dice Score")
@@ -259,7 +278,6 @@ if __name__ == "__main__":
     plt.ylabel("Dice Score")
     plt.legend()
     plt.title("Training and Validation Dice Score")
-    plt.savefig(f"{model_name}_training_validation_dice_score.png")  # Save with model name
+    dice_score_plot_name = f"{model_name}_train{train_percentage_str}_channels{channels_str}_dice_score.png"
+    plt.savefig(dice_score_plot_name)  # Save with detailed name
     plt.close()  # Close the plot to free memory
-
-    evaluate_model(model, test_dataloader, criterion, device)
