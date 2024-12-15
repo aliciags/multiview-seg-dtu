@@ -1,6 +1,6 @@
 import os
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, random_split
 from pathlib import Path
 import random
 import matplotlib.pyplot as plt
@@ -87,8 +87,9 @@ class Well1ImageMaskDataset(Dataset):
         mask = Image.open(mask_path).convert("L")
         if self.mask_transform:
             mask = self.mask_transform(mask)
+            binary_mask = (mask > 0.5).float()
 
-        return images, mask  # Return both the 11-channel image stack and the mask
+        return images, binary_mask  # Return both the 11-channel image stack and the mask
 
 
 class WellsImageMaskDataset(Dataset):
@@ -178,8 +179,9 @@ class WellsImageMaskDataset(Dataset):
         mask = Image.open(mask_path).convert("L")
         if self.mask_transform:
             mask = self.mask_transform(mask)
+            binary_mask = (mask > 0.5).float()
 
-        return images, mask  # Return both the 11-channel image stack and the mask
+        return images, binary_mask  # Return both the 11-channel image stack and the mask
         
 
 def walk_through_dir(dir_path):
@@ -273,11 +275,19 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display
     # Initialize dataset and dataloader
     train_dataset = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
     test_dataset = Well1ImageMaskDataset(image_dir=image_dirs[0], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
-    print("Number of images in the trainset:", len(train_dataset))
+    
+    # Defineix les proporcions per la divisió en train i val (80% per train, 20% per val)
+    train_size = int(0.8 * len(train_dataset))  # 80% per al training
+    val_size = len(train_dataset) - train_size  # 20% per a la validació
+    train_subset, val_subset = random_split(train_dataset, [train_size, val_size])
+    print("Number of images in the trainset:", len(train_subset))
+    print("Number of images in the valset:", len(val_subset))
     print("Number of images in the testset:", len(test_dataset))
 
-    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-    test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+    # Crea els DataLoaders per train i val
+    train_dataloader = DataLoader(train_subset, batch_size=32, shuffle=True)
+    val_dataloader = DataLoader(val_subset, batch_size=32, shuffle=False)
+    test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False)  
 
     '''
     # Display one sample tensor from trainset for verification
@@ -302,4 +312,4 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display
         print("First image from testset:")
         display_image_stack_with_mask(test_dataset[0][0], test_dataset[0][1])
     
-    return train_dataloader, test_dataloader
+    return train_dataloader, val_dataloader, test_dataloader

@@ -12,4 +12,6 @@
 source /zhome/44/2/213836/myenv/bin/activate
 
 # Run the Python script
-CUDA_LAUNCH_BLOCKING=1 python3 train.py
+python3 train.py --num_epochs 20 --model_name "UNet"
+python3 train.py --num_epochs 20 --model_name "Simple"
+python3 train.py --num_epochs 20 --model_name "Pretrained"
