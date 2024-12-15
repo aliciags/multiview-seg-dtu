@@ -8,6 +8,8 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 import random
+import argparse
+import matplotlib.pyplot as plt
 from pathlib import Path
 from dataloader import get_dataloader, walk_through_dir
 from sklearn.metrics import precision_score, recall_score, f1_score
@@ -22,7 +24,7 @@ def set_seed(seed=111):
     np.random.seed(seed)
 
 # Training loop
-def train_model(model, train_loader, criterion, optimizer, num_epochs):
+def train_model_old(model, train_loader, criterion, optimizer, num_epochs):
     model.train()  # Set model to training mode
     for epoch in range(num_epochs):
         epoch_loss = 0
@@ -61,7 +63,7 @@ def calculate_dice_score(outputs, masks):
     return dice_score.item()
 
 # Training loop
-def train_model2(model, train_loader, val_loader, criterion, optimizer, num_epochs):
+def train_model(model, train_loader, val_loader, criterion, optimizer, num_epochs):
     train_losses = []
     val_losses = []
     train_dice_scores = []
@@ -185,6 +187,19 @@ if __name__ == "__main__":
         required=True, 
         help="Name of the model to train (Simple/UNet/Pretrained)"
     )
+    parser.add_argument(
+        "--train_percentage", 
+        type=float, 
+        default=1.0,
+        help="Percentage of the trainset to use"
+    )
+    parser.add_argument(
+        "--channels",
+        type=int,
+        nargs='+',           # Allows one or more integers (vector of channels)
+        default=None,
+        help="List of channel indices to use (e.g., 0 3 5). Default is None (use all channels)."
+    )
     args = parser.parse_args()
     
     set_seed()
@@ -205,7 +220,7 @@ if __name__ == "__main__":
     ])
     mask_transform = data_transform
     
-    train_dataloader, val_dataloader, test_dataloader = get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False)
+    train_dataloader, val_dataloader, test_dataloader = get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=args.train_percentage, channel_indices=args.channels)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -246,9 +261,9 @@ if __name__ == "__main__":
     plt.ylabel("Loss")
     plt.legend()
     plt.title("Training and Validation Loss")
-    plt.savefig("training_validation_loss.png")  # Save the figure
+    plt.savefig(f"{model_name}_training_validation_loss.png")  # Save with model name
     plt.close()  # Close the plot to free memory
-    
+
     # Dice Score
     plt.figure(figsize=(10, 5))
     plt.plot(train_dice_scores, label="Train Dice Score")
@@ -257,7 +272,7 @@ if __name__ == "__main__":
     plt.ylabel("Dice Score")
     plt.legend()
     plt.title("Training and Validation Dice Score")
-    plt.savefig("training_validation_dice_score.png")  # Save the figure
+    plt.savefig(f"{model_name}_training_validation_dice_score.png")  # Save with model name
     plt.close()  # Close the plot to free memory
 
     evaluate_model(model, test_dataloader, criterion, device)

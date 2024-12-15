@@ -1,14 +1,15 @@
 import os
 import torch
-from torch.utils.data import Dataset, DataLoader, random_split
+from torch.utils.data import Dataset, DataLoader, random_split, Subset
 from pathlib import Path
 import random
+import numpy as np
 import matplotlib.pyplot as plt
 import re
 from PIL import Image
 
 class Well1ImageMaskDataset(Dataset):
-    def __init__(self, image_dir, mask_dir, transform=None, mask_transform=None):
+    def __init__(self, image_dir, mask_dir, transform=None, mask_transform=None, channel_indices=None):
         """
         Args:
             image_dir (str): Path to the directory containing images.
@@ -20,6 +21,7 @@ class Well1ImageMaskDataset(Dataset):
         self.mask_dir = mask_dir
         self.transform = transform
         self.mask_transform = mask_transform
+        self.channels = channel_indices if channel_indices is not None else list(range(11))
         self.sample_dict = self._get_sample_dict()
 
     def _get_sample_dict(self):
@@ -66,34 +68,39 @@ class Well1ImageMaskDataset(Dataset):
         return len(self.sample_dict)
 
     def __getitem__(self, idx):
-        # Retrieve sample ID and paths
         sample_id = list(self.sample_dict.keys())[idx]
         image_paths = self.sample_dict[sample_id]['images']
         mask_path = self.sample_dict[sample_id]['mask']
-        
-        # Load the 11 images and apply transformations
+
+        # Load the specified images and apply transformations
         images = []
-        for img_path in image_paths:
-            img = Image.open(img_path).convert("L")  # Convert to grayscale if needed
-            if self.transform:
-                img = self.transform(img)
-            images.append(img)
-        
-        # Stack images along the channel dimension to create (11, H, W)
+        for i in self.channels:
+            img_path = image_paths[i]
+            if img_path is not None:
+                img = Image.open(img_path).convert("L")
+                if self.transform:
+                    img = self.transform(img)
+                images.append(img)
+            else:
+                raise FileNotFoundError(f"Image for channel {i} in sample {sample_id} is missing.")
+
+        # Stack images along the channel dimension (C, H, W)
         images = torch.stack(images, dim=0)
         images = images.squeeze(1)
 
         # Load the mask and apply mask-specific transformations
+        if mask_path is None:
+            raise FileNotFoundError(f"Mask for sample {sample_id} is missing.")
         mask = Image.open(mask_path).convert("L")
         if self.mask_transform:
             mask = self.mask_transform(mask)
-            binary_mask = (mask > 0.5).float()
+        binary_mask = (mask > 0.5).float()
 
-        return images, binary_mask  # Return both the 11-channel image stack and the mask
+        return images, binary_mask
 
 
 class WellsImageMaskDataset(Dataset):
-    def __init__(self, image_dirs, mask_dir, transform=None, mask_transform=None):
+    def __init__(self, image_dirs, mask_dir, transform=None, mask_transform=None, channel_indices=None):
         """
         Args:
             image_dir (str): Path to the directory containing images.
@@ -105,6 +112,7 @@ class WellsImageMaskDataset(Dataset):
         self.mask_dir = mask_dir
         self.transform = transform
         self.mask_transform = mask_transform
+        self.channels = channel_indices if channel_indices is not None else list(range(11))
         self.sample_dict = self._get_sample_dict()
 
     def _get_sample_dict(self):
@@ -158,30 +166,35 @@ class WellsImageMaskDataset(Dataset):
         return len(self.sample_dict)
 
     def __getitem__(self, idx):
-        # Retrieve sample ID and paths
         sample_id = list(self.sample_dict.keys())[idx]
         image_paths = self.sample_dict[sample_id]['images']
         mask_path = self.sample_dict[sample_id]['mask']
-        
-        # Load the 11 images and apply transformations
+
+        # Load the specified images and apply transformations
         images = []
-        for img_path in image_paths:
-            img = Image.open(img_path).convert("L")  # Convert to grayscale if needed
-            if self.transform:
-                img = self.transform(img)
-            images.append(img)
-        
-        # Stack images along the channel dimension to create (11, H, W)
+        for i in self.channels:
+            img_path = image_paths[i]
+            if img_path is not None:
+                img = Image.open(img_path).convert("L")
+                if self.transform:
+                    img = self.transform(img)
+                images.append(img)
+            else:
+                raise FileNotFoundError(f"Image for channel {i} in sample {sample_id} is missing.")
+
+        # Stack images along the channel dimension (C, H, W)
         images = torch.stack(images, dim=0)
         images = images.squeeze(1)
 
         # Load the mask and apply mask-specific transformations
+        if mask_path is None:
+            raise FileNotFoundError(f"Mask for sample {sample_id} is missing.")
         mask = Image.open(mask_path).convert("L")
         if self.mask_transform:
             mask = self.mask_transform(mask)
-            binary_mask = (mask > 0.5).float()
+        binary_mask = (mask > 0.5).float()
 
-        return images, binary_mask  # Return both the 11-channel image stack and the mask
+        return images, binary_mask
         
 
 def walk_through_dir(dir_path):
@@ -230,56 +243,72 @@ def plot_transformed_images(image_paths, transform, n=3, seed=42):
 
             fig.suptitle(f"Class: {image_path.parent.stem}", fontsize=16)
 
-def display_image_stack_with_mask(images, mask):
+def display_image_stack_with_mask(images, mask, channel_indices):
     """
-    Display each channel (focal point) in the 11-channel image stack as separate images
-    and the corresponding mask in a 4x3 grid.
-    
+    Display each selected channel in the image stack as separate images and the corresponding mask in a grid.
+
     Args:
-        images (Tensor): A tensor of shape (11, H, W) representing the 11-channel image stack.
+        images (Tensor): A tensor of shape (C, H, W) representing the multi-channel image stack.
         mask (Tensor): A tensor of shape (1, H, W) representing the binary mask.
+        channel_indices (list of int): The original indices of the channels being displayed (for labeling).
     """
-    num_channels = images.shape[0]  # Should be 11 for this dataset
-    
-    # Create a 4x3 grid for 11 channels + 1 mask
-    fig, axes = plt.subplots(4, 3, figsize=(12, 12))
-    fig.suptitle("11-Channel Image Stack and Mask", fontsize=16)
+    channel_indices = channel_indices if channel_indices is not None else list(range(11))
+    num_channels = images.shape[0]
+    total_images = num_channels + 1  # Number of images + mask
 
+    # Calculate grid size: rows and columns for the display
+    cols = 3
+    rows = (total_images + cols - 1) // cols  # Compute rows to fit all images + mask
+
+    # Create a grid for the channels and mask
+    fig, axes = plt.subplots(rows, cols, figsize=(12, 4 * rows))
+    fig.suptitle(f"{num_channels}-Channel Image Stack and Mask", fontsize=16)
+
+    # Flatten axes for easier indexing (handles both 2D and 1D cases)
+    axes = axes.flatten()
+
+    # Display each channel image with the correct z-index label
     for i in range(num_channels):
-        # Convert each channel to numpy and remove the singleton dimension
         img_np = images[i].squeeze().numpy()  # Squeeze to shape (H, W)
-        
-        # Display each focal point image
-        row, col = divmod(i, 3)
-        axes[row, col].imshow(img_np, cmap='gray')
-        axes[row, col].axis('off')
-        axes[row, col].set_title(f"Focal Point z{i + 1:02}")
+        axes[i].imshow(img_np, cmap='gray')
+        axes[i].axis('off')
+        axes[i].set_title(f"Focal Point z{channel_indices[i] + 1:02}")  # Display correct z-index
 
-    # Display the mask in the last position (row=3, col=2)
-    mask_np = mask.squeeze().numpy()  # Squeeze to shape (H, W)
-    axes[3, 2].imshow(mask_np, cmap='gray')
-    axes[3, 2].axis('off')
-    axes[3, 2].set_title("Mask")
+    # Display the mask in the next available subplot
+    mask_np = mask.squeeze().numpy()
+    axes[num_channels].imshow(mask_np, cmap='gray')
+    axes[num_channels].axis('off')
+    axes[num_channels].set_title("Mask")
 
-    # Hide any unused subplots
-    for j in range(num_channels + 1, 12):
-        row, col = divmod(j, 3)
-        axes[row, col].axis('off')
-    
-    plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout to fit title
+    # Hide any remaining unused subplots
+    for j in range(total_images, len(axes)):
+        axes[j].axis('off')
+
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout to fit the title
     plt.show()
 
-def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False):   
+def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=1.0, channel_indices=None):   
     # plot_transformed_images(image_path_list, transform=data_transform, n=3)
     
-    # Initialize dataset and dataloader
-    train_dataset = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
-    test_dataset = Well1ImageMaskDataset(image_dir=image_dirs[0], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
+    # Initialize dataset and dataloaderz
+    train_dataset = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform, channel_indices=channel_indices)
+    test_dataset = Well1ImageMaskDataset(image_dir=image_dirs[0], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform, channel_indices=channel_indices)
+
+    val_split = 0.2
+    # Split the dataset into training and validation based on val_split
+    train_size = int((1 - val_split) * len(train_dataset))
+    val_size = len(train_dataset) - train_size
+    full_train_subset, full_val_subset = random_split(train_dataset, [train_size, val_size])
+
+    # Further sample the training and validation subsets based on train_percentage
+    sampled_train_size = int(train_percentage * len(full_train_subset))
+    sampled_train_indices = np.random.choice(full_train_subset.indices, sampled_train_size, replace=False)
+    train_subset = Subset(train_dataset, sampled_train_indices)
+
+    sampled_val_size = int(train_percentage * len(full_val_subset)) # Same proportion as trainset
+    sampled_val_indices = np.random.choice(full_val_subset.indices, sampled_val_size, replace=False)
+    val_subset = Subset(train_dataset, sampled_val_indices)
     
-    # Defineix les proporcions per la divisió en train i val (80% per train, 20% per val)
-    train_size = int(0.8 * len(train_dataset))  # 80% per al training
-    val_size = len(train_dataset) - train_size  # 20% per a la validació
-    train_subset, val_subset = random_split(train_dataset, [train_size, val_size])
     print("Number of images in the trainset:", len(train_subset))
     print("Number of images in the valset:", len(val_subset))
     print("Number of images in the testset:", len(test_dataset))
@@ -308,8 +337,8 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display
     if display_sample:
         # Display a random sample from the dataset
         print("First image from trainset:")
-        display_image_stack_with_mask(train_dataset[0][0], train_dataset[0][1])
+        display_image_stack_with_mask(train_dataset[0][0], train_dataset[0][1], channel_indices)
         print("First image from testset:")
-        display_image_stack_with_mask(test_dataset[0][0], test_dataset[0][1])
+        display_image_stack_with_mask(test_dataset[0][0], test_dataset[0][1], channel_indices)
     
     return train_dataloader, val_dataloader, test_dataloader

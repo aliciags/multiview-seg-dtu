@@ -12,6 +12,12 @@
 source /zhome/44/2/213836/myenv/bin/activate
 
 # Run the Python script
-python3 train.py --num_epochs 20 --model_name "UNet"
-python3 train.py --num_epochs 20 --model_name "Simple"
-python3 train.py --num_epochs 20 --model_name "Pretrained"
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 6
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 6 3 4 8
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 6 3 4 8 2 0
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.2
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.4
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.6
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.8
+python3 train.py --num_epochs 20 --model_name "Simple" --train_percentage 1.0
