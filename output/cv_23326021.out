@@ -1,0 +1,58 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23326021: <cv> in cluster <dcc> Done
+
+Job <cv> was submitted from host <n-62-12-19> by user <s241931> in cluster <dcc> at Mon Dec  2 15:02:34 2024
+Job was executed on host(s) <4*n-62-11-14>, in queue <gpuv100>, as user <s241931> in cluster <dcc> at Mon Dec  2 15:28:06 2024
+</zhome/2b/8/212341> was used as the home directory.
+</zhome/2b/8/212341/multiview-seg-dtu> was used as the working directory.
+Started at Mon Dec  2 15:28:06 2024
+Terminated at Mon Dec  2 21:36:24 2024
+Results reported at Mon Dec  2 21:36:24 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J cv                      # Job name
+#BSUB -n 4                       # Number of cores
+#BSUB -W 14:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o cv_%J.out               # Standard output file
+#BSUB -e cv_%J.err               # Standard error file
+
+# Activate the environment
+source /zhome/2b/8/212341/multiview-seg-dtu/.venv/bin/activate
+
+# Run the Python script
+CUDA_LAUNCH_BLOCKING=1 python3 cross_validation.py > output.txt
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   20284.00 sec.
+    Max Memory :                                 925 MB
+    Average Memory :                             883.26 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31843.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   22100 sec.
+    Turnaround time :                            23630 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <cv_23326021.err> for stderr output of this job.
+

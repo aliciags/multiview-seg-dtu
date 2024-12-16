@@ -4,9 +4,5 @@ myenv/
 .env
 dl/
 DLproject/
-*.out
-*.err
-*.png
 *.txt
 venv/
-*.png
