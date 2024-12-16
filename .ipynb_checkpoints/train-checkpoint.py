@@ -261,7 +261,7 @@ if __name__ == "__main__":
     plt.ylabel("Loss")
     plt.legend()
     plt.title("Training and Validation Loss")
-    plt.savefig(f"{model_name}_training_validation_loss.png")  # Save with model name
+    plt.savefig(f"public/{model_name}_training_validation_loss.png")  # Save with model name
     plt.close()  # Close the plot to free memory
 
     # Dice Score
@@ -272,7 +272,7 @@ if __name__ == "__main__":
     plt.ylabel("Dice Score")
     plt.legend()
     plt.title("Training and Validation Dice Score")
-    plt.savefig(f"{model_name}_training_validation_dice_score.png")  # Save with model name
+    plt.savefig(f"public/{model_name}_training_validation_dice_score.png")  # Save with model name
     plt.close()  # Close the plot to free memory
 
     evaluate_model(model, test_dataloader, criterion, device)

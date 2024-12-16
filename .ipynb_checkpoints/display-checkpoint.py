@@ -57,7 +57,7 @@ else:
 
     # Adjust layout and save the figure to a file
     plt.tight_layout()
-    output_path = f"output_image_grid_{sample_str}.png"
+    output_path = f"public/output_image_grid_{sample_str}.png"
     plt.savefig(output_path, dpi=300)  # Save as a high-resolution image
 
     print(f"Image grid saved to {output_path}")

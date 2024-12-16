@@ -1,0 +1,5 @@
+/zhome/2b/8/212341/.lsbatch/1733138056.23322347.shell: line 12: /zhome/44/2/213836/.venv/bin/activate: Permission denied
+Traceback (most recent call last):
+  File "/zhome/2b/8/212341/multiview-seg-dtu/cross_validation.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
