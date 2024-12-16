@@ -312,8 +312,74 @@ def data_augmentation(dataset):
 
     return augmented_dataset
 
+def gaussian_filter(img, sigma = 20):
+    # Convert to NumPy 
+    try:
+        img_np = img.numpy()
+    except:
+        img_np = np.array(img)
 
-def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=1.0, channel_indices=None, augmentation=False):   
+    # Fourier Transform
+    f_transform = np.fft.fft2(img_np)  # Compute the FFT
+    f_shifted = np.fft.fftshift(f_transform)  # Shift zero frequency to the center
+
+    # Log-transform for better visualization
+    # f_magnitude = np.log1p(np.abs(f_shifted))
+
+    # Get center coordinates
+    rows, cols = img_np.shape
+    crow, ccol = rows // 2, cols // 2
+
+    # Create a Gaussian mask for low-pass filtering  sigma param default 30  
+    # Generate a 2D Gaussian kernel
+    x = np.linspace(-ccol, ccol, cols)
+    y = np.linspace(-crow, crow, rows)
+    X, Y = np.meshgrid(x, y)
+    gaussian_mask = np.exp(-(X**2 + Y**2) / (2 * sigma**2))
+    
+    # Apply the filter to the frequency domain
+    filtered_f_shifted = f_shifted * gaussian_mask
+    
+    # Visualize the filtered frequency domain
+    # filtered_magnitude = np.log1p(np.abs(filtered_f_shifted))
+
+    # Perform the inverse shift
+    inverse_shift = np.fft.ifftshift(filtered_f_shifted)
+    
+    # Inverse Fourier Transform
+    filtered_img = np.fft.ifft2(inverse_shift)
+    
+    # Get the real part and normalize for visualization
+    filtered_img = np.abs(filtered_img)
+    if np.max(filtered_img) > 0:  # Avoid division by zero
+        filtered_img = (filtered_img / np.max(filtered_img) * 255).astype(np.uint8)
+    
+    return filtered_img
+
+
+def fft_filter(dataset):
+    """
+    Apply fft_filter to each tensor in a dataset.
+
+    Parameters:
+        dataset (iterable): An iterable collection of data.
+        sigma (int): Standard deviation for the Gaussian mask in the filter.
+
+    Returns:
+        list: A list of filtered images as NumPy arrays.
+    """
+    filtered_images = []
+    
+    for img in dataset:  # Optional progress bar
+        if torch.is_tensor(img):  # If the dataset provides tensors
+            img = img.squeeze().numpy()  # Convert to NumPy (remove channel dimension if necessary)
+        filtered_img = fft_filter(img)
+        filtered_images.append(filtered_img)
+    
+    return filtered_images
+
+
+def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=1.0, channel_indices=None, augmentation=False, fft=False):   
     # plot_transformed_images(image_path_list, transform=data_transform, n=3)
     
     # Initialize dataset and dataloaderz
@@ -322,6 +388,11 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display
 
     if augmentation:
         train_dataset = data_augmentation(train_dataset)
+    elif fft:
+        train_dataset = fft_filter(train_dataset)
+    elif augmentation and fft:
+        train_dataset = data_augmentation(train_dataset)
+        train_dataset = fft_filter(train_dataset)
 
     val_split = 0.2
     # Split the dataset into training and validation based on val_split
@@ -338,7 +409,7 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display
     print("Number of images in the valset:", len(val_subset))
     print("Number of images in the testset:", len(test_dataset))
 
-    # Crea els DataLoaders per train i val
+    # Create DataLoaders for train and val
     train_dataloader = DataLoader(train_subset, batch_size=32, shuffle=True)
     val_dataloader = DataLoader(val_subset, batch_size=32, shuffle=False)
     test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False)  
