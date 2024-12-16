@@ -290,6 +290,45 @@ def display_image_stack_with_mask(images, mask, channel_indices):
 def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=1.0, channel_indices=None):   
     # plot_transformed_images(image_path_list, transform=data_transform, n=3)
     
+<<<<<<< HEAD
+    transform1 = transforms.Compose([
+                                    transforms.RandomHorizontalFlip(p=0.75),
+                                    transforms.RandomVerticalFlip(p=0.75),
+                                    transforms.RandomRotation(degrees=(-180, 180)),                                            
+                                    ])
+    transform2 = transforms.Compose([
+                                    transforms.RandomHorizontalFlip(p=0.75),
+                                    transforms.RandomVerticalFlip(p=0.75),
+                                    transforms.RandomPerspective(distortion_scale= 0.25, p = 0.8)
+                                    ])
+    
+    # Initialize dataset and dataloader
+    train_dataset = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
+    # train_dataset_og = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
+    # train_dataset2 = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=transform1, mask_transform=transform1)
+    # train_dataset3 = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=transform2, mask_transform=transform2)
+
+    # train_dataset = ConcatDataset([train_dataset_og, train_dataset2,train_dataset3])
+    
+    test_dataset = Well1ImageMaskDataset(image_dir=image_dirs[0], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform)
+    print("Number of images in the trainset:", len(train_dataset))
+    print("Number of images in the testset:", len(test_dataset))
+
+    augmented_train_dataset = []
+    for i in range(len(train_datset)):
+        img_mask = train_dataset[i]
+        img_mask_1 = transform1(img_mask)
+        img_mask_2 = transform2(img_mask)
+        augmented_train_dataset.append(img_mask)
+        augmented_train_dataset.append(img_mask_1)
+        augmented_train_dataset.append(img_mask_2)
+        
+    
+    
+    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+    augmented_train_dataloader = DataLoader(augmented_train_dataset, batch_size=32, shuffle=True)
+    test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+=======
     # Initialize dataset and dataloaderz
     train_dataset = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform, channel_indices=channel_indices)
     test_dataset = Well1ImageMaskDataset(image_dir=image_dirs[0], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform, channel_indices=channel_indices)
@@ -317,6 +356,7 @@ def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display
     train_dataloader = DataLoader(train_subset, batch_size=32, shuffle=True)
     val_dataloader = DataLoader(val_subset, batch_size=32, shuffle=False)
     test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False)  
+>>>>>>> main
 
     '''
     # Display one sample tensor from trainset for verification
