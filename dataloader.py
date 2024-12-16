@@ -1,12 +1,13 @@
+import re
 import os
 import torch
-from torch.utils.data import Dataset, DataLoader, random_split, Subset
-from pathlib import Path
 import random
 import numpy as np
-import matplotlib.pyplot as plt
-import re
+from pathlib import Path
 from PIL import Image
+import matplotlib.pyplot as plt
+from torch.utils.data import Dataset, DataLoader, random_split, Subset
+import torchvision.transforms.v2 as transforms
 
 class Well1ImageMaskDataset(Dataset):
     def __init__(self, image_dir, mask_dir, transform=None, mask_transform=None, channel_indices=None):
@@ -287,12 +288,40 @@ def display_image_stack_with_mask(images, mask, channel_indices):
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust layout to fit the title
     plt.show()
 
-def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=1.0, channel_indices=None):   
+def data_augmentation(dataset):
+    # augments data based on dataset
+    transform1 = transforms.Compose([
+                                    transforms.RandomHorizontalFlip(p=0.75),
+                                    transforms.RandomVerticalFlip(p=0.75),
+                                    transforms.RandomRotation(degrees=(-180, 180)),                                            
+                                    ])
+    transform2 = transforms.Compose([
+                                    transforms.RandomHorizontalFlip(p=0.75),
+                                    transforms.RandomVerticalFlip(p=0.75),
+                                    transforms.RandomPerspective(distortion_scale= 0.25, p = 0.8)
+                                    ])
+
+    augmented_dataset = []
+    for i in range(len(dataset)):
+        img_mask = dataset[i]
+        img_mask_1 = transform1(img_mask)
+        img_mask_2 = transform2(img_mask)
+        augmented_dataset.append(img_mask)
+        augmented_dataset.append(img_mask_1)
+        augmented_dataset.append(img_mask_2)
+
+    return augmented_dataset
+
+
+def get_dataloader(image_dirs, mask_dir, data_transform, mask_transform, display_sample=False, train_percentage=1.0, channel_indices=None, augmentation=False):   
     # plot_transformed_images(image_path_list, transform=data_transform, n=3)
     
     # Initialize dataset and dataloaderz
     train_dataset = WellsImageMaskDataset(image_dirs=image_dirs[1:], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform, channel_indices=channel_indices)
     test_dataset = Well1ImageMaskDataset(image_dir=image_dirs[0], mask_dir=mask_dir, transform=data_transform, mask_transform=mask_transform, channel_indices=channel_indices)
+
+    if augmentation:
+        train_dataset = data_augmentation(train_dataset)
 
     val_split = 0.2
     # Split the dataset into training and validation based on val_split
