@@ -253,7 +253,7 @@ if __name__ == "__main__":
 
     # Save the model
     current_directory = os.getcwd()
-    model_name_saved = f"segmentation_model_{model_name}_train{train_percentage_str}_channels{channels_str}.pth"
+    model_name_saved = f"final_models/segmentation_model_{model_name}_train{train_percentage_str}_channels{channels_str}.pth"
     model_save_path = os.path.join(current_directory, model_name_saved)
     torch.save(model.state_dict(), model_save_path)
     print(f"Model saved successfully to {model_save_path}")
@@ -266,7 +266,7 @@ if __name__ == "__main__":
     plt.ylabel("Loss")
     plt.legend()
     plt.title("Training and Validation Loss")
-    loss_plot_name = f"{model_name}_train{train_percentage_str}_channels{channels_str}_loss.png"
+    loss_plot_name = f"public/{model_name}_train{train_percentage_str}_channels{channels_str}_loss.png"
     plt.savefig(loss_plot_name)  # Save with detailed name
     plt.close()  # Close the plot to free memory
 
@@ -278,6 +278,6 @@ if __name__ == "__main__":
     plt.ylabel("Dice Score")
     plt.legend()
     plt.title("Training and Validation Dice Score")
-    dice_score_plot_name = f"{model_name}_train{train_percentage_str}_channels{channels_str}_dice_score.png"
+    dice_score_plot_name = f"public/{model_name}_train{train_percentage_str}_channels{channels_str}_dice_score.png"
     plt.savefig(dice_score_plot_name)  # Save with detailed name
     plt.close()  # Close the plot to free memory

@@ -12,19 +12,19 @@
 source /zhome/44/2/213836/myenv/bin/activate
 
 # Run the Python script
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6.pth" --channels 1 6
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8.pth" --channels 1 6 3 4 8
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth" --channels 1 6 3 4 8 2 0
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels6.pth" --channels 6
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels5_6_7.pth" --channels 5 6 7
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels4_5_6_7_8.pth" --channels 4 5 6 7 8
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth" --channels 3 4 5 6 7 8 9
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels1.pth" --channels 1
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels1_6.pth" --channels 1 6
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels1_6_3_4_8.pth" --channels 1 6 3 4 8
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth" --channels 1 6 3 4 8 2 0
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels6.pth" --channels 6
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels5_6_7.pth" --channels 5 6 7
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels4_5_6_7_8.pth" --channels 4 5 6 7 8
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth" --channels 3 4 5 6 7 8 9
 
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
-#python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "final_models/segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
 
-python3 evaluate.py --pth_model "segmentation_model_Pretrained.pth" --model_name "Pretrained" --channels 0 1 2 3 4 5 6 7 8 9 10
-python3 evaluate.py --pth_model "segmentation_model_Simple.pth" --model_name "Simple" --channels 0 1 2 3 4 5 6 7 8 9 10
+python3 evaluate.py --pth_model "final_models/segmentation_model_Pretrained.pth" --model_name "Pretrained" --channels 0 1 2 3 4 5 6 7 8 9 10
+python3 evaluate.py --pth_model "final_models/segmentation_model_Simple.pth" --model_name "Simple" --channels 0 1 2 3 4 5 6 7 8 9 10
