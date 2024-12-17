@@ -134,7 +134,6 @@ if __name__ == "__main__":
     
     # Initialize the device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    criterion = nn.BCELoss()
     current_directory = os.getcwd()
     model_save_path = os.path.join(current_directory, args.pth_model)
     
@@ -142,10 +141,13 @@ if __name__ == "__main__":
     model_name = args.model_name
     if model_name == "Simple":
         model = SimpleSegmentationModel().to(device)
+        criterion = nn.BCELoss()
     elif model_name == "UNet":
         model = SegmentationModel(channels=len(args.channels)).to(device)
+        criterion = nn.BCELoss()
     elif model_name == "Pretrained":
         model = pretrained_UNet().to(device)
+        criterion = nn.BCEWithLogitsLoss()
     
     model.load_state_dict(torch.load(model_save_path))
     print(f"Model {args.pth_model} loaded successfully.")

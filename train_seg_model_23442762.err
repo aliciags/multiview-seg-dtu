@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 252, in <module>
+    channels_str = "_".join(map(str, args.channels))
+TypeError: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 252, in <module>
+    channels_str = "_".join(map(str, args.channels))
+TypeError: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 252, in <module>
+    channels_str = "_".join(map(str, args.channels))
+TypeError: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 252, in <module>
+    channels_str = "_".join(map(str, args.channels))
+TypeError: 'NoneType' object is not iterable

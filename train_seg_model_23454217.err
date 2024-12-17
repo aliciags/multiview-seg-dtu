@@ -1,0 +1,13 @@
+/zhome/44/2/213836/.lsbatch/1734466030.23454217.shell: line 13: /zhome/2b/8/212341/multiview-seg-dtu/.venv/bin/activate: Permission denied
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 4, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 4, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/train.py", line 4, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'

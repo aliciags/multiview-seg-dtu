@@ -1,0 +1,82 @@
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels0_1_2_3_4_5_6_7_8_9_10.pth loaded successfully.
+Average Loss on Test Set: 0.7551
+Precision: 0.2806
+Recall: 0.8834
+F1 Score: 0.4259
+Dice Score: 0.4259
+IoU: 0.2706
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23443460: <train_seg_model> in cluster <dcc> Done
+
+Job <train_seg_model> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Sat Dec 14 13:40:21 2024
+Job was executed on host(s) <4*n-62-20-12>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Sat Dec 14 13:40:21 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Sat Dec 14 13:40:21 2024
+Terminated at Sat Dec 14 13:40:48 2024
+Results reported at Sat Dec 14 13:40:48 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 4                       # Number of cores
+#BSUB -W 14:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6.pth" --channels 1 6
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8.pth" --channels 1 6 3 4 8
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth" --channels 1 6 3 4 8 2 0
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels6.pth" --channels 6
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels5_6_7.pth" --channels 5 6 7
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels4_5_6_7_8.pth" --channels 4 5 6 7 8
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth" --channels 3 4 5 6 7 8 9
+
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   17.00 sec.
+    Max Memory :                                 810 MB
+    Average Memory :                             810.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31958.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   59 sec.
+    Turnaround time :                            27 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23443460.err> for stderr output of this job.
+

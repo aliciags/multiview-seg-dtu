@@ -303,12 +303,19 @@ def data_augmentation(dataset):
 
     augmented_dataset = []
     for i in range(len(dataset)):
+        '''
         img_mask = dataset[i]
         img_mask_1 = transform1(img_mask)
         img_mask_2 = transform2(img_mask)
         augmented_dataset.append(img_mask)
         augmented_dataset.append(img_mask_1)
         augmented_dataset.append(img_mask_2)
+        '''
+        img_mask_1 = transform1(dataset[i][0]), transform1(dataset[i][1])
+        img_mask_2 = transform2(dataset[i][0]), transform2(dataset[i][1])
+        augmented_dataset.append(dataset[i]) # Original
+        augmented_dataset.append(img_mask_1) # Transform 1
+        augmented_dataset.append(img_mask_2) # Transform 2
 
     return augmented_dataset
 

@@ -1,0 +1,131 @@
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Epoch [1/20]
+Train Loss: 0.5108, Train Dice Score: 0.3875
+Val Loss: 0.3958, Val Dice Score: 0.0005
+Epoch [2/20]
+Train Loss: 0.3320, Train Dice Score: 0.5607
+Val Loss: 1.0639, Val Dice Score: 0.2232
+Epoch [3/20]
+Train Loss: 0.2609, Train Dice Score: 0.6261
+Val Loss: 0.3046, Val Dice Score: 0.3238
+Epoch [4/20]
+Train Loss: 0.2281, Train Dice Score: 0.6453
+Val Loss: 0.7326, Val Dice Score: 0.2835
+Epoch [5/20]
+Train Loss: 0.1969, Train Dice Score: 0.6847
+Val Loss: 4.7864, Val Dice Score: 0.2199
+Epoch [6/20]
+Train Loss: 0.1785, Train Dice Score: 0.7127
+Val Loss: 0.3431, Val Dice Score: 0.4624
+Epoch [7/20]
+Train Loss: 0.1716, Train Dice Score: 0.7193
+Val Loss: 0.5826, Val Dice Score: 0.3535
+Epoch [8/20]
+Train Loss: 0.1635, Train Dice Score: 0.7267
+Val Loss: 0.5232, Val Dice Score: 0.5180
+Epoch [9/20]
+Train Loss: 0.1557, Train Dice Score: 0.7373
+Val Loss: 2.5514, Val Dice Score: 0.2274
+Epoch [10/20]
+Train Loss: 0.1928, Train Dice Score: 0.6651
+Val Loss: 2.2607, Val Dice Score: 0.2382
+Epoch [11/20]
+Train Loss: 0.1750, Train Dice Score: 0.6821
+Val Loss: 0.6777, Val Dice Score: 0.3778
+Epoch [12/20]
+Train Loss: 0.1578, Train Dice Score: 0.7312
+Val Loss: 0.2936, Val Dice Score: 0.5260
+Epoch [13/20]
+Train Loss: 0.1499, Train Dice Score: 0.7426
+Val Loss: 1.4732, Val Dice Score: 0.2334
+Epoch [14/20]
+Train Loss: 0.1493, Train Dice Score: 0.7456
+Val Loss: 0.2226, Val Dice Score: 0.4943
+Epoch [15/20]
+Train Loss: 0.1445, Train Dice Score: 0.7560
+Val Loss: 0.2440, Val Dice Score: 0.4699
+Epoch [16/20]
+Train Loss: 0.1416, Train Dice Score: 0.7585
+Val Loss: 0.2501, Val Dice Score: 0.6873
+Epoch [17/20]
+Train Loss: 0.1428, Train Dice Score: 0.7574
+Val Loss: 0.3659, Val Dice Score: 0.2080
+Epoch [18/20]
+Train Loss: 0.1376, Train Dice Score: 0.7615
+Val Loss: 0.6001, Val Dice Score: 0.4612
+Epoch [19/20]
+Train Loss: 0.1356, Train Dice Score: 0.7711
+Val Loss: 0.2651, Val Dice Score: 0.4735
+Epoch [20/20]
+Train Loss: 0.1337, Train Dice Score: 0.7714
+Val Loss: 0.5319, Val Dice Score: 0.5079
+Model saved successfully to /zhome/44/2/213836/02456/multiview-seg-dtu/segmentation_model_UNet_train100%_channels0_1_2_3_4_5_6_7_8_9_10.pth
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23443242: <train_seg_model> in cluster <dcc> Done
+
+Job <train_seg_model> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Sat Dec 14 12:25:37 2024
+Job was executed on host(s) <4*n-62-20-12>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Sat Dec 14 12:25:38 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Sat Dec 14 12:25:38 2024
+Terminated at Sat Dec 14 13:30:10 2024
+Results reported at Sat Dec 14 13:30:10 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 4                       # Number of cores
+#BSUB -W 14:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 6
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 6 3 4 8
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 6 3 4 8 2 0
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.2
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.4
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.6
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.8
+python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 1.0
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   3495.00 sec.
+    Max Memory :                                 1304 MB
+    Average Memory :                             1283.45 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31464.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   3873 sec.
+    Turnaround time :                            3873 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23443242.err> for stderr output of this job.
+

@@ -1,0 +1,86 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23446483: <train_seg_model> in cluster <dcc> Exited
+
+Job <train_seg_model> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Mon Dec 16 10:35:17 2024
+Job was executed on host(s) <n-62-11-15>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Mon Dec 16 10:35:21 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Mon Dec 16 10:35:21 2024
+Terminated at Mon Dec 16 10:36:32 2024
+Results reported at Mon Dec 16 10:36:32 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 1                       # Number of cores
+#BSUB -W 2:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6.pth" --channels 1 6
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8.pth" --channels 1 6 3 4 8
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth" --channels 1 6 3 4 8 2 0
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels6.pth" --channels 6
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels5_6_7.pth" --channels 5 6 7
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels4_5_6_7_8.pth" --channels 4 5 6 7 8
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth" --channels 3 4 5 6 7 8 9
+
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+#python3 evaluate.py --pth_model "segmentation_model_Pretrained.pth" --model_name "Pretrained" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_Simple.pth" --model_name "Simple" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+
+# Models trained on 100% of the dataset
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_7.pth" --channels 1 7
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_7_2_4_3.pth" --channels 1 7 2 4 3
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_7_2_4_3_9_6.pth" --channels 1 7 2 4 3 9 6
+
+# Models trained on 80% of the dataset
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1.pth" --channels 1
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1_7.pth" --channels 1 7
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1_7_2_4_3.pth" --channels 1 7 2 4 3
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1_7_2_4_3_9_6.pth" --channels 1 7 2 4 3 9 6
+
+------------------------------------------------------------
+
+Exited with exit code 2.
+
+Resource usage summary:
+
+    CPU time :                                   43.00 sec.
+    Max Memory :                                 714 MB
+    Average Memory :                             573.67 MB
+    Total Requested Memory :                     8192.00 MB
+    Delta Memory :                               7478.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   71 sec.
+    Turnaround time :                            75 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23446483.err> for stderr output of this job.
+

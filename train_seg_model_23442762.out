@@ -1,0 +1,321 @@
+Number of images in the trainset: 177
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Epoch [1/20]
+Train Loss: 0.7076, Train Dice Score: 0.2287
+Val Loss: 0.7269, Val Dice Score: 0.2199
+Epoch [2/20]
+Train Loss: 0.5349, Train Dice Score: 0.2946
+Val Loss: 0.5564, Val Dice Score: 0.0057
+Epoch [3/20]
+Train Loss: 0.4622, Train Dice Score: 0.4907
+Val Loss: 0.4679, Val Dice Score: 0.0060
+Epoch [4/20]
+Train Loss: 0.4105, Train Dice Score: 0.5663
+Val Loss: 0.4151, Val Dice Score: 0.0003
+Epoch [5/20]
+Train Loss: 0.3691, Train Dice Score: 0.6107
+Val Loss: 0.3953, Val Dice Score: 0.0024
+Epoch [6/20]
+Train Loss: 0.3453, Train Dice Score: 0.6160
+Val Loss: 0.3785, Val Dice Score: 0.0077
+Epoch [7/20]
+Train Loss: 0.3185, Train Dice Score: 0.6358
+Val Loss: 0.3617, Val Dice Score: 0.0162
+Epoch [8/20]
+Train Loss: 0.3012, Train Dice Score: 0.6447
+Val Loss: 0.3524, Val Dice Score: 0.0243
+Epoch [9/20]
+Train Loss: 0.2790, Train Dice Score: 0.6569
+Val Loss: 0.3497, Val Dice Score: 0.0422
+Epoch [10/20]
+Train Loss: 0.2690, Train Dice Score: 0.6460
+Val Loss: 1.3787, Val Dice Score: 0.2233
+Epoch [11/20]
+Train Loss: 0.2798, Train Dice Score: 0.5855
+Val Loss: 1.5106, Val Dice Score: 0.2230
+Epoch [12/20]
+Train Loss: 0.2648, Train Dice Score: 0.6029
+Val Loss: 0.8690, Val Dice Score: 0.2468
+Epoch [13/20]
+Train Loss: 0.2459, Train Dice Score: 0.6389
+Val Loss: 0.5376, Val Dice Score: 0.4447
+Epoch [14/20]
+Train Loss: 0.2240, Train Dice Score: 0.6823
+Val Loss: 0.6574, Val Dice Score: 0.2600
+Epoch [15/20]
+Train Loss: 0.2153, Train Dice Score: 0.6786
+Val Loss: 0.5372, Val Dice Score: 0.4145
+Epoch [16/20]
+Train Loss: 0.2067, Train Dice Score: 0.6986
+Val Loss: 0.4374, Val Dice Score: 0.0580
+Epoch [17/20]
+Train Loss: 0.2123, Train Dice Score: 0.6784
+Val Loss: 0.6379, Val Dice Score: 0.1278
+Epoch [18/20]
+Train Loss: 0.1911, Train Dice Score: 0.7167
+Val Loss: 0.6421, Val Dice Score: 0.3027
+Epoch [19/20]
+Train Loss: 0.1827, Train Dice Score: 0.7330
+Val Loss: 0.7424, Val Dice Score: 0.2344
+Epoch [20/20]
+Train Loss: 0.1757, Train Dice Score: 0.7376
+Val Loss: 0.2870, Val Dice Score: 0.5142
+Number of images in the trainset: 355
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Epoch [1/20]
+Train Loss: 0.6221, Train Dice Score: 0.1640
+Val Loss: 0.6522, Val Dice Score: 0.0392
+Epoch [2/20]
+Train Loss: 0.4397, Train Dice Score: 0.4693
+Val Loss: 0.4221, Val Dice Score: 0.0020
+Epoch [3/20]
+Train Loss: 0.3712, Train Dice Score: 0.5545
+Val Loss: 0.4131, Val Dice Score: 0.0082
+Epoch [4/20]
+Train Loss: 0.3218, Train Dice Score: 0.5902
+Val Loss: 0.3641, Val Dice Score: 0.0164
+Epoch [5/20]
+Train Loss: 0.2900, Train Dice Score: 0.6268
+Val Loss: 0.7774, Val Dice Score: 0.2283
+Epoch [6/20]
+Train Loss: 0.2786, Train Dice Score: 0.6123
+Val Loss: 1.3179, Val Dice Score: 0.2232
+Epoch [7/20]
+Train Loss: 0.2731, Train Dice Score: 0.5741
+Val Loss: 1.1839, Val Dice Score: 0.2322
+Epoch [8/20]
+Train Loss: 0.2440, Train Dice Score: 0.6265
+Val Loss: 0.4743, Val Dice Score: 0.3168
+Epoch [9/20]
+Train Loss: 0.2364, Train Dice Score: 0.6262
+Val Loss: 0.8034, Val Dice Score: 0.2579
+Epoch [10/20]
+Train Loss: 0.2171, Train Dice Score: 0.6663
+Val Loss: 1.3111, Val Dice Score: 0.2206
+Epoch [11/20]
+Train Loss: 0.2099, Train Dice Score: 0.6730
+Val Loss: 1.6534, Val Dice Score: 0.2227
+Epoch [12/20]
+Train Loss: 0.1939, Train Dice Score: 0.6933
+Val Loss: 3.9827, Val Dice Score: 0.2199
+Epoch [13/20]
+Train Loss: 0.2040, Train Dice Score: 0.6548
+Val Loss: 0.4435, Val Dice Score: 0.0663
+Epoch [14/20]
+Train Loss: 0.1846, Train Dice Score: 0.6949
+Val Loss: 0.5378, Val Dice Score: 0.4223
+Epoch [15/20]
+Train Loss: 0.1747, Train Dice Score: 0.7042
+Val Loss: 2.1494, Val Dice Score: 0.2205
+Epoch [16/20]
+Train Loss: 0.1717, Train Dice Score: 0.7152
+Val Loss: 0.2425, Val Dice Score: 0.5123
+Epoch [17/20]
+Train Loss: 0.1899, Train Dice Score: 0.6721
+Val Loss: 0.4408, Val Dice Score: 0.3815
+Epoch [18/20]
+Train Loss: 0.1688, Train Dice Score: 0.7095
+Val Loss: 0.8546, Val Dice Score: 0.2717
+Epoch [19/20]
+Train Loss: 0.1563, Train Dice Score: 0.7397
+Val Loss: 1.1740, Val Dice Score: 0.2517
+Epoch [20/20]
+Train Loss: 0.1545, Train Dice Score: 0.7441
+Val Loss: 0.4042, Val Dice Score: 0.6381
+Number of images in the trainset: 533
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Epoch [1/20]
+Train Loss: 0.5788, Train Dice Score: 0.2849
+Val Loss: 0.5045, Val Dice Score: 0.0034
+Epoch [2/20]
+Train Loss: 0.3924, Train Dice Score: 0.5551
+Val Loss: 0.3829, Val Dice Score: 0.0017
+Epoch [3/20]
+Train Loss: 0.3288, Train Dice Score: 0.5672
+Val Loss: 0.3457, Val Dice Score: 0.0911
+Epoch [4/20]
+Train Loss: 0.2812, Train Dice Score: 0.6124
+Val Loss: 0.3287, Val Dice Score: 0.2588
+Epoch [5/20]
+Train Loss: 0.2558, Train Dice Score: 0.6312
+Val Loss: 1.0714, Val Dice Score: 0.2143
+Epoch [6/20]
+Train Loss: 0.2284, Train Dice Score: 0.6494
+Val Loss: 2.3514, Val Dice Score: 0.2199
+Epoch [7/20]
+Train Loss: 0.2111, Train Dice Score: 0.6807
+Val Loss: 0.5255, Val Dice Score: 0.3306
+Epoch [8/20]
+Train Loss: 0.2026, Train Dice Score: 0.6823
+Val Loss: 0.9174, Val Dice Score: 0.2412
+Epoch [9/20]
+Train Loss: 0.1972, Train Dice Score: 0.6821
+Val Loss: 0.8196, Val Dice Score: 0.2740
+Epoch [10/20]
+Train Loss: 0.1812, Train Dice Score: 0.7004
+Val Loss: 1.3723, Val Dice Score: 0.2487
+Epoch [11/20]
+Train Loss: 0.1720, Train Dice Score: 0.7171
+Val Loss: 0.4201, Val Dice Score: 0.1810
+Epoch [12/20]
+Train Loss: 0.1691, Train Dice Score: 0.7174
+Val Loss: 0.5017, Val Dice Score: 0.3896
+Epoch [13/20]
+Train Loss: 0.1666, Train Dice Score: 0.7152
+Val Loss: 0.2824, Val Dice Score: 0.4639
+Epoch [14/20]
+Train Loss: 0.1706, Train Dice Score: 0.7119
+Val Loss: 0.6433, Val Dice Score: 0.4106
+Epoch [15/20]
+Train Loss: 0.1594, Train Dice Score: 0.7351
+Val Loss: 1.3808, Val Dice Score: 0.2306
+Epoch [16/20]
+Train Loss: 0.1555, Train Dice Score: 0.7421
+Val Loss: 0.3274, Val Dice Score: 0.3079
+Epoch [17/20]
+Train Loss: 0.1776, Train Dice Score: 0.6884
+Val Loss: 0.4688, Val Dice Score: 0.1886
+Epoch [18/20]
+Train Loss: 0.1876, Train Dice Score: 0.6616
+Val Loss: 0.6059, Val Dice Score: 0.5010
+Epoch [19/20]
+Train Loss: 0.1663, Train Dice Score: 0.7175
+Val Loss: 0.2569, Val Dice Score: 0.6493
+Epoch [20/20]
+Train Loss: 0.1616, Train Dice Score: 0.7179
+Val Loss: 0.3203, Val Dice Score: 0.1864
+Number of images in the trainset: 711
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Epoch [1/20]
+Train Loss: 0.5476, Train Dice Score: 0.3151
+Val Loss: 0.4657, Val Dice Score: 0.0116
+Epoch [2/20]
+Train Loss: 0.3615, Train Dice Score: 0.5484
+Val Loss: 0.3786, Val Dice Score: 0.0082
+Epoch [3/20]
+Train Loss: 0.2966, Train Dice Score: 0.5829
+Val Loss: 1.4623, Val Dice Score: 0.2240
+Epoch [4/20]
+Train Loss: 0.2562, Train Dice Score: 0.6128
+Val Loss: 0.3367, Val Dice Score: 0.3854
+Epoch [5/20]
+Train Loss: 0.2218, Train Dice Score: 0.6509
+Val Loss: 0.5447, Val Dice Score: 0.4183
+Epoch [6/20]
+Train Loss: 0.2120, Train Dice Score: 0.6440
+Val Loss: 0.4473, Val Dice Score: 0.0305
+Epoch [7/20]
+Train Loss: 0.1909, Train Dice Score: 0.6866
+Val Loss: 0.5031, Val Dice Score: 0.4362
+Epoch [8/20]
+Train Loss: 0.1952, Train Dice Score: 0.6745
+Val Loss: 3.2361, Val Dice Score: 0.2219
+Epoch [9/20]
+Train Loss: 0.1786, Train Dice Score: 0.7027
+Val Loss: 1.5183, Val Dice Score: 0.2262
+Epoch [10/20]
+Train Loss: 0.1741, Train Dice Score: 0.7092
+Val Loss: 0.3556, Val Dice Score: 0.1351
+Epoch [11/20]
+Train Loss: 0.1629, Train Dice Score: 0.7264
+Val Loss: 0.3605, Val Dice Score: 0.1669
+Epoch [12/20]
+Train Loss: 0.1632, Train Dice Score: 0.7267
+Val Loss: 0.3533, Val Dice Score: 0.5188
+Epoch [13/20]
+Train Loss: 0.1609, Train Dice Score: 0.7259
+Val Loss: 1.2406, Val Dice Score: 0.2243
+Epoch [14/20]
+Train Loss: 0.1531, Train Dice Score: 0.7329
+Val Loss: 0.4236, Val Dice Score: 0.5299
+Epoch [15/20]
+Train Loss: 0.1521, Train Dice Score: 0.7474
+Val Loss: 0.9551, Val Dice Score: 0.2237
+Epoch [16/20]
+Train Loss: 0.1599, Train Dice Score: 0.7248
+Val Loss: 0.3899, Val Dice Score: 0.1035
+Epoch [17/20]
+Train Loss: 0.1571, Train Dice Score: 0.7382
+Val Loss: 0.3661, Val Dice Score: 0.6815
+Epoch [18/20]
+Train Loss: 0.1451, Train Dice Score: 0.7502
+Val Loss: 0.1724, Val Dice Score: 0.7474
+Epoch [19/20]
+Train Loss: 0.1427, Train Dice Score: 0.7670
+Val Loss: 0.1928, Val Dice Score: 0.6378
+Epoch [20/20]
+Train Loss: 0.1457, Train Dice Score: 0.7488
+Val Loss: 0.5669, Val Dice Score: 0.3812
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23442762: <train_seg_model> in cluster <dcc> Exited
+
+Job <train_seg_model> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Fri Dec 13 18:13:12 2024
+Job was executed on host(s) <4*n-62-20-13>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Fri Dec 13 18:13:13 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Fri Dec 13 18:13:13 2024
+Terminated at Fri Dec 13 20:47:57 2024
+Results reported at Fri Dec 13 20:47:57 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 4                       # Number of cores
+#BSUB -W 14:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 6
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 5 6 7
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 4 5 6 7 8
+#python3 train.py --num_epochs 20 --model_name "UNet" --channels 3 4 5 6 7 8 9
+python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.2
+python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.4
+python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.6
+python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.8
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   8341.00 sec.
+    Max Memory :                                 1357 MB
+    Average Memory :                             1315.85 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31411.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   9292 sec.
+    Turnaround time :                            9285 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23442762.err> for stderr output of this job.
+

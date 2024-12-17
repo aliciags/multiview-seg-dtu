@@ -1,0 +1,6 @@
+usage: evaluate.py [-h] --model_name MODEL_NAME --pth_model PTH_MODEL
+                   [--channels CHANNELS [CHANNELS ...]]
+evaluate.py: error: the following arguments are required: --model_name
+usage: evaluate.py [-h] --model_name MODEL_NAME --pth_model PTH_MODEL
+                   [--channels CHANNELS [CHANNELS ...]]
+evaluate.py: error: the following arguments are required: --model_name

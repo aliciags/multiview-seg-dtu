@@ -1,0 +1,104 @@
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 711
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 711
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 711
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+Number of images in the trainset: 711
+Number of images in the valset: 223
+Number of images in the testset: 50
+Using device: cuda
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23445614: <train_seg_model> in cluster <dcc> Exited
+
+Job <train_seg_model> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Sun Dec 15 20:57:49 2024
+Job was executed on host(s) <4*n-62-20-12>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Sun Dec 15 21:15:14 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Sun Dec 15 21:15:14 2024
+Terminated at Sun Dec 15 21:17:03 2024
+Results reported at Sun Dec 15 21:17:03 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 4                       # Number of cores
+#BSUB -W 14:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 7
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 7 2 4 3
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 7 2 4 3 9 6
+
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 --train_percentage 0.8
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 7 --train_percentage 0.8
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 7 2 4 3 --train_percentage 0.8
+python3 train.py --num_epochs 20 --model_name "UNet" --channels 1 7 2 4 3 9 6 --train_percentage 0.8
+
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.2
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.4
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.6
+#python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.8
+#python3 train.py --num_epochs 20 --model_name "Simple" --train_percentage 1.0
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   53.00 sec.
+    Max Memory :                                 132 MB
+    Average Memory :                             132.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               32636.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   110 sec.
+    Turnaround time :                            1154 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23445614.err> for stderr output of this job.
+

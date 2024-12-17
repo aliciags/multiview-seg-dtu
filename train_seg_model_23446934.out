@@ -1,0 +1,166 @@
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1.pth loaded successfully.
+Average Loss on Test Set: 0.3376
+Precision: 0.7518
+Recall: 0.5985
+F1 Score: 0.6665
+Dice Score: 0.6665
+IoU: 0.4998
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1_7.pth loaded successfully.
+Average Loss on Test Set: 0.2780
+Precision: 0.8307
+Recall: 0.4821
+F1 Score: 0.6102
+Dice Score: 0.6102
+IoU: 0.4390
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1_7_2_4_3.pth loaded successfully.
+Average Loss on Test Set: 1.6890
+Precision: 0.1828
+Recall: 0.9489
+F1 Score: 0.3065
+Dice Score: 0.3065
+IoU: 0.1810
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1_7_2_4_3_9_6.pth loaded successfully.
+Average Loss on Test Set: 0.3865
+Precision: 0.8687
+Recall: 0.3934
+F1 Score: 0.5415
+Dice Score: 0.5415
+IoU: 0.3713
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train80%_channels1.pth loaded successfully.
+Average Loss on Test Set: 0.2464
+Precision: 0.8004
+Recall: 0.5430
+F1 Score: 0.6471
+Dice Score: 0.6471
+IoU: 0.4783
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train80%_channels1_7.pth loaded successfully.
+Average Loss on Test Set: 0.4634
+Precision: 0.4996
+Recall: 0.8087
+F1 Score: 0.6177
+Dice Score: 0.6177
+IoU: 0.4468
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train80%_channels1_7_2_4_3.pth loaded successfully.
+Average Loss on Test Set: 0.3684
+Precision: 0.8165
+Recall: 0.2715
+F1 Score: 0.4075
+Dice Score: 0.4075
+IoU: 0.2559
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train80%_channels1_7_2_4_3_9_6.pth loaded successfully.
+Average Loss on Test Set: 0.6889
+Precision: 0.2571
+Recall: 0.7479
+F1 Score: 0.3826
+Dice Score: 0.3826
+IoU: 0.2366
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23446934: <train_seg_model> in cluster <dcc> Done
+
+Job <train_seg_model> was submitted from host <hpclogin1> by user <s243345> in cluster <dcc> at Mon Dec 16 14:36:54 2024
+Job was executed on host(s) <n-62-20-3>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Mon Dec 16 14:37:52 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Mon Dec 16 14:37:52 2024
+Terminated at Mon Dec 16 14:40:50 2024
+Results reported at Mon Dec 16 14:40:50 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 1                       # Number of cores
+#BSUB -W 2:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6.pth" --channels 1 6
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8.pth" --channels 1 6 3 4 8
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth" --channels 1 6 3 4 8 2 0
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels6.pth" --channels 6
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels5_6_7.pth" --channels 5 6 7
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels4_5_6_7_8.pth" --channels 4 5 6 7 8
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth" --channels 3 4 5 6 7 8 9
+
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+#python3 evaluate.py --pth_model "segmentation_model_Pretrained.pth" --model_name "Pretrained" --channels 0 1 2 3 4 5 6 7 8 9 10
+#python3 evaluate.py --pth_model "segmentation_model_Simple.pth" --model_name "Simple" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+
+# Models trained on 100% of the dataset
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1 --model_name "UNet"
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_7.pth" --channels 1 7 --model_name "UNet"
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_7_2_4_3.pth" --channels 1 7 2 4 3 --model_name "UNet"
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_7_2_4_3_9_6.pth" --channels 1 7 2 4 3 9 6 --model_name "UNet"
+
+# Models trained on 80% of the dataset
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1.pth" --channels 1 --model_name "UNet"
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1_7.pth" --channels 1 7 --model_name "UNet"
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1_7_2_4_3.pth" --channels 1 7 2 4 3 --model_name "UNet"
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels1_7_2_4_3_9_6.pth" --channels 1 7 2 4 3 9 6 --model_name "UNet"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   105.00 sec.
+    Max Memory :                                 289 MB
+    Average Memory :                             264.25 MB
+    Total Requested Memory :                     8192.00 MB
+    Delta Memory :                               7903.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   180 sec.
+    Turnaround time :                            236 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23446934.err> for stderr output of this job.
+

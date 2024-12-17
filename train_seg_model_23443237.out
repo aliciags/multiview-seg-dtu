@@ -1,0 +1,201 @@
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1.pth loaded successfully.
+Average Loss on Test Set: 0.2299
+Precision: 0.7997
+Recall: 0.5848
+F1 Score: 0.6756
+Dice Score: 0.6756
+IoU: 0.5101
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1_6.pth loaded successfully.
+Average Loss on Test Set: 0.2806
+Precision: 0.9080
+Recall: 0.4788
+F1 Score: 0.6270
+Dice Score: 0.6270
+IoU: 0.4567
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1_6_3_4_8.pth loaded successfully.
+Average Loss on Test Set: 1.4825
+Precision: 0.1967
+Recall: 0.9212
+F1 Score: 0.3242
+Dice Score: 0.3242
+IoU: 0.1935
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth loaded successfully.
+Average Loss on Test Set: 0.3760
+Precision: 0.5331
+Recall: 0.8171
+F1 Score: 0.6452
+Dice Score: 0.6452
+IoU: 0.4763
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels6.pth loaded successfully.
+Average Loss on Test Set: 0.3760
+Precision: 0.8211
+Recall: 0.2561
+F1 Score: 0.3905
+Dice Score: 0.3905
+IoU: 0.2426
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels5_6_7.pth loaded successfully.
+Average Loss on Test Set: 0.4450
+Precision: 0.8419
+Recall: 0.0827
+F1 Score: 0.1507
+Dice Score: 0.1507
+IoU: 0.0815
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels4_5_6_7_8.pth loaded successfully.
+Average Loss on Test Set: 1.8912
+Precision: 0.1787
+Recall: 0.9442
+F1 Score: 0.3005
+Dice Score: 0.3005
+IoU: 0.1768
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth loaded successfully.
+Average Loss on Test Set: 0.5919
+Precision: 0.4435
+Recall: 0.7516
+F1 Score: 0.5578
+Dice Score: 0.5578
+IoU: 0.3868
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth loaded successfully.
+Average Loss on Test Set: 0.4475
+Precision: 0.8730
+Recall: 0.3180
+F1 Score: 0.4662
+Dice Score: 0.4662
+IoU: 0.3039
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth loaded successfully.
+Average Loss on Test Set: 0.3503
+Precision: 0.9406
+Recall: 0.2602
+F1 Score: 0.4076
+Dice Score: 0.4076
+IoU: 0.2560
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth loaded successfully.
+Average Loss on Test Set: 0.3568
+Precision: 0.9073
+Recall: 0.4138
+F1 Score: 0.5684
+Dice Score: 0.5684
+IoU: 0.3970
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth loaded successfully.
+Average Loss on Test Set: 0.6034
+Precision: 0.5245
+Recall: 0.7316
+F1 Score: 0.6110
+Dice Score: 0.6110
+IoU: 0.4398
+Number of images in the trainset: 889
+Number of images in the valset: 223
+Number of images in the testset: 50
+Model segmentation_model_UNet.pth loaded successfully.
+Average Loss on Test Set: 1.3627
+Precision: 0.1863
+Recall: 0.9801
+F1 Score: 0.3130
+Dice Score: 0.3130
+IoU: 0.1856
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23443237: <train_seg_model> in cluster <dcc> Done
+
+Job <train_seg_model> was submitted from host <n-62-12-19> by user <s243345> in cluster <dcc> at Sat Dec 14 12:18:03 2024
+Job was executed on host(s) <4*n-62-20-12>, in queue <gpuv100>, as user <s243345> in cluster <dcc> at Sat Dec 14 12:18:04 2024
+</zhome/44/2/213836> was used as the home directory.
+</zhome/44/2/213836/02456/multiview-seg-dtu> was used as the working directory.
+Started at Sat Dec 14 12:18:04 2024
+Terminated at Sat Dec 14 12:21:33 2024
+Results reported at Sat Dec 14 12:21:33 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q gpuv100
+#BSUB -J train_seg_model         # Job name
+#BSUB -n 4                       # Number of cores
+#BSUB -W 14:00                   # Wall-clock time (14 hours here)
+#BSUB -R "rusage[mem=8GB]"       # Memory requirements (8 GB here)
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o train_seg_model_%J.out  # Standard output file
+#BSUB -e train_seg_model_%J.err  # Standard error file
+
+# Activate the environment
+source /zhome/44/2/213836/myenv/bin/activate
+
+# Run the Python script
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1.pth" --channels 1
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6.pth" --channels 1 6
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8.pth" --channels 1 6 3 4 8
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels1_6_3_4_8_2_0.pth" --channels 1 6 3 4 8 2 0
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels6.pth" --channels 6
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels5_6_7.pth" --channels 5 6 7
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels4_5_6_7_8.pth" --channels 4 5 6 7 8
+python3 evaluate.py --pth_model "segmentation_model_UNet_train100%_channels3_4_5_6_7_8_9.pth" --channels 3 4 5 6 7 8 9
+
+python3 evaluate.py --pth_model "segmentation_model_UNet_train20%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+python3 evaluate.py --pth_model "segmentation_model_UNet_train40%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+python3 evaluate.py --pth_model "segmentation_model_UNet_train60%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+python3 evaluate.py --pth_model "segmentation_model_UNet_train80%_channels0_1_2_3_4_5_6_7_8_9_10.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+
+python3 evaluate.py --pth_model "segmentation_model_UNet.pth" --channels 0 1 2 3 4 5 6 7 8 9 10
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   191.00 sec.
+    Max Memory :                                 1122 MB
+    Average Memory :                             1117.25 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31646.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   223 sec.
+    Turnaround time :                            210 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <train_seg_model_23443237.err> for stderr output of this job.
+

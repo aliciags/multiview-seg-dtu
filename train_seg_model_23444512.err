@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/evaluate.py", line 140, in <module>
+    model = SegmentationModel(in_channels=len(args.channels)).to(device)
+TypeError: __init__() got an unexpected keyword argument 'in_channels'
+Traceback (most recent call last):
+  File "/zhome/44/2/213836/02456/multiview-seg-dtu/evaluate.py", line 140, in <module>
+    model = SegmentationModel(in_channels=len(args.channels)).to(device)
+TypeError: __init__() got an unexpected keyword argument 'in_channels'
