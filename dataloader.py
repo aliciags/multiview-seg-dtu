@@ -370,10 +370,10 @@ def fft_filter(dataset):
     """
     filtered_images = []
     
-    for img in dataset:  # Optional progress bar
+    for img in dataset:
         if torch.is_tensor(img):  # If the dataset provides tensors
             img = img.squeeze().numpy()  # Convert to NumPy (remove channel dimension if necessary)
-        filtered_img = fft_filter(img)
+        filtered_img = gaussian_filter(img)
         filtered_images.append(filtered_img)
     
     return filtered_images
