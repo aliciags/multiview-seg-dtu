@@ -9,7 +9,8 @@
 #BSUB -e train_seg_model_%J.err  # Standard error file
 
 # Activate the environment
-source /zhome/44/2/213836/myenv/bin/activate
+# source /zhome/44/2/213836/myenv/bin/activate
+source /zhome/2b/8/212341/multiview-seg-dtu/.venv/bin/activate
 
 # Run the Python script
 #python3 train.py --num_epochs 20 --model_name "UNet" --channels 1
@@ -20,4 +21,4 @@ source /zhome/44/2/213836/myenv/bin/activate
 #python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.4
 #python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.6
 #python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 0.8
-python3 train.py --num_epochs 20 --model_name "Simple" --train_percentage 1.0
+python3 train.py --num_epochs 20 --model_name "UNet" --train_percentage 1.0 --fft True
