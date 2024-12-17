@@ -314,20 +314,20 @@ def data_augmentation(dataset):
 
 def gaussian_filter(img, sigma = 20):
     # Convert to NumPy 
-    try:
-        img_np = img.numpy()
-    except:
-        img_np = np.array(img)
+    # try:
+    #     img_np = img.numpy()
+    # except:
+    #     img_np = np.array(img)
 
     # Fourier Transform
-    f_transform = np.fft.fft2(img_np)  # Compute the FFT
+    f_transform = np.fft.fft2(img)  # Compute the FFT
     f_shifted = np.fft.fftshift(f_transform)  # Shift zero frequency to the center
 
     # Log-transform for better visualization
     # f_magnitude = np.log1p(np.abs(f_shifted))
 
     # Get center coordinates
-    rows, cols = img_np.shape
+    rows, cols = img.shape
     crow, ccol = rows // 2, cols // 2
 
     # Create a Gaussian mask for low-pass filtering  sigma param default 30  
@@ -369,12 +369,21 @@ def fft_filter(dataset):
         list: A list of filtered images as NumPy arrays.
     """
     filtered_images = []
-    
-    for img in dataset:
-        if torch.is_tensor(img):  # If the dataset provides tensors
-            img = img.squeeze().numpy()  # Convert to NumPy (remove channel dimension if necessary)
-        filtered_img = gaussian_filter(img)
-        filtered_images.append(filtered_img)
+    for i in range(len(dataset)):
+        img, mask = dataset[i]
+        # Loop through each channel
+        filtered_channels = []
+        for c in range(img.shape[0]):  # img.shape[0] is the number of channels
+            channel = img[c]  # Select the c-th channel
+
+            # Convert to NumPy (if not already)
+            channel_np = channel.cpu().numpy()
+        
+            filtered_channel = gaussian_filter(channel_np)
+            filtered_channels.append(torch.tensor(filtered_channel, dtype=torch.float32))
+        
+        filtered_img = torch.stack(filtered_channels, dim=0)
+        filtered_images.append((filtered_img, mask))
     
     return filtered_images
 
