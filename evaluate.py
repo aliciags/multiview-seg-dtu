@@ -33,7 +33,7 @@ def evaluate_model(model, test_dataloader, criterion, device):
             total_loss += loss.item()
 
             # Convert outputs to binary predictions (threshold at 0.5 for binary classification)
-            binary_outputs = (outputs > 0.5).float()
+            binary_outputs = (outputs > torch.quantile(outputs, 0.8)).float()
 
             # Flatten the outputs and masks for evaluation
             binary_outputs_np = binary_outputs.cpu().numpy().flatten()

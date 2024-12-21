@@ -4,7 +4,7 @@
 
 This repository contains the implementation of our project on cell segmentation for the course Deep Learning (02456) at DTU. The project integrates preprocessing, model training, evaluation, and explainability through Grad-CAM, offering a complete pipeline for binary segmentation of cells and nanopillars in brightfield microscopy images.
 
-## Dependencies
+## Dependencies
 
 To install the dependencies of the project, first create a python environment and install the dependecies following the next commands. The activation is based on a unix environment.
 
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 ## Notes
 - The results, including channel selection and saliency maps, rely on interpretability-driven Grad-CAM insights, which are explained in `saliency_maps.ipynb`.
 - All scripts and notebooks are designed to be modular and can be run independently for specific tasks like training, evaluation, preprocessing, and visualization.
-- Ensure that the necessary dependencies are installed before running any of the scripts or notebooks. The `environment.yaml` file in the repository contains all required dependencies and can be used to set up the environment.
+- Ensure that the necessary dependencies are installed before running any of the scripts or notebooks. The `requirements.txt` file in the repository contains all required dependencies and can be used to set up the environment.
 
 ## Contact
 For any questions or issues, please reach out the authors.
