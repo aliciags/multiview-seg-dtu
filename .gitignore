@@ -4,5 +4,4 @@ myenv/
 .env
 dl/
 DLproject/
-*.txt
 venv/
