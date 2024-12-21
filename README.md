@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the implementation of our project on cell segmentation using U-Net architectures. The project integrates preprocessing, model training, evaluation, and explainability through Grad-CAM, offering a complete pipeline for binary segmentation of cells and nanopillars in brightfield microscopy images.
+This repository contains the implementation of our project on cell segmentation for the course Deep Learning (02456) at DTU. The project integrates preprocessing, model training, evaluation, and explainability through Grad-CAM, offering a complete pipeline for binary segmentation of cells and nanopillars in brightfield microscopy images.
 
 ## Repository Structure
 - **`results.ipynb`**  
